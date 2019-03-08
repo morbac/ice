@@ -1,6 +1,6 @@
 var require = {
     "paths": {
-      "jquery": "http://code.jquery.com/jquery-1.9.1.min",
+      "jquery": "http://code.jquery.com/jquery-3.3.1.min",
       'tinymce': "tinymce/js/tinymce/tinymce",
       "tinymce.jquery": "tinymce/js/tinymce/jquery.tinymce.min",
    //    "rangy": "rangy/rangy-core",
@@ -11,8 +11,7 @@ var require = {
 	  // "IceEmdashPlugin":'ice/plugins/IceEmdashPlugin/IceEmdashPlugin.js',
 	  // "IceSmartQuotesPlugin":'ice/plugins/IceSmartQuotesPlugin/IceSmartQuotesPlugin.js',
 
-  "jquery1.9": "http://code.jquery.com/jquery-1.9.1.min",
-  "jquery-migrate" : "http://code.jquery.com/jquery-migrate-1.0.0",
+  "jquery3.3": "http://code.jquery.com/jquery-3.3.1.min",
   "rangy-core": "../../lib/rangy/rangy-core",
   "polyfills": "../../src/polyfills",
   "ice":"../../src/ice",
@@ -28,7 +27,7 @@ var require = {
   "tinymce":"../../lib/tinymce/jscripts/tinymce4/tinymce",
     },
     "shim": {
-    	"jquery1.9": {
+    	"jquery3.3": {
     		exports: "$"
     	},
       "rangy-core": {
