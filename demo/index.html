@@ -18,22 +18,15 @@
 	<script type="text/javascript" src='../src/plugins/IceEmdashPlugin/IceEmdashPlugin.js'></script>
 	<script type="text/javascript" src='../src/plugins/IceSmartQuotesPlugin/IceSmartQuotesPlugin.js'></script>
 	<script type="text/javascript" src="../lib/tinymce/js/tinymce/tinymce.js"></script>
-
+  <style type="text/css">#loremcontent { display: none; }</style>
 </head>
 
 <body>
 	<div class="container">
 	
 		<h1>Ice Demo</h1>
-	
-		<p>
-			Ice is a track changes implementation, built in javascript, for anything that is contenteditable on the web. The following are demos of Ice in action. You can check out the code on <a href="https://github.com/NYTimes/ice">github</a>.
-		</p>
 
-		<h3>Tinymce Plugin</h3>
-		<p>
-			With tinymce handling the text editing, Ice can initialize and operate in a more configurable editing environment. Notice, the last six buttons in the toolbar can be toggled to modify changes or the state of Ice. In addition, this example shows off the ease in customizing and plugging in styles for tracking tags with a highlighter style contributed by Andrew Ozz at Wordpress. Since Andrew's style only uses two colors, one for inserts and one for deletes, you can hover over changes to get a title popup with more information about the user for a change.
-		</p>
+    <button type="button" onclick="setLoremContent()">Lorem ipsum...</button><br/><br/>
 
 		<div class="editor">
 			<div class="control">
@@ -53,14 +46,22 @@
 			</div>
 		</div>
 
+    <div id="loremcontent">
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam a turpis risus. Etiam tincidunt consequat dui, ac varius quam porttitor vitae. Cras finibus orci id ante iaculis, at volutpat ipsum tempus. Fusce lobortis sem a dui facilisis, malesuada sagittis justo eleifend. Sed hendrerit, ex nec vulputate sagittis, elit sem maximus dui, sit amet scelerisque libero dolor nec nulla. Curabitur nec dapibus nibh. Maecenas ac ante sed ex cursus finibus ac at lacus. Nam at orci volutpat, cursus mi sit amet, dapibus nisi. Morbi pellentesque, urna ac molestie convallis, sapien nulla laoreet nibh, quis viverra arcu nulla finibus velit. Vivamus metus erat, faucibus ac lobortis sed, vulputate a sem.</p>
+      <p>Mauris justo magna, auctor id diam ut, mollis dictum massa. Aenean est lorem, dignissim vitae varius eu, elementum eu sapien. Nam volutpat nibh justo, tincidunt tristique nisl faucibus in. Sed vel nibh non massa blandit dictum. In tincidunt dapibus augue, eget volutpat odio ullamcorper ac. Maecenas ultricies ligula id iaculis vulputate. Aliquam pretium eget massa sit amet congue. Phasellus consequat sapien diam, vel dictum urna cursus sed. Donec a dui id urna varius pretium. Etiam nec tincidunt mi. Praesent blandit lectus et tortor facilisis, at porta mi convallis. Morbi quis luctus neque. Maecenas accumsan, arcu ut volutpat imperdiet, justo nulla placerat mi, nec scelerisque mauris purus et libero.</p>
+      <p>Proin urna ipsum, varius id dictum ac, laoreet non odio. Pellentesque in ipsum ac sem imperdiet rutrum. Donec cursus mauris sit amet dolor blandit, sit amet tincidunt quam iaculis. Maecenas vitae dui ac ligula aliquet finibus. Fusce fringilla mi quis nisl aliquam, id laoreet nunc rhoncus. Pellentesque placerat elit vitae cursus sagittis. Nulla mattis tortor eu dignissim porttitor. Nunc hendrerit dolor pellentesque massa dictum, sed facilisis dui tincidunt. Vivamus in magna sit amet velit ultrices scelerisque eu et nisi. Aliquam laoreet augue ac arcu dapibus mollis. Pellentesque nec eros congue, aliquet enim id, hendrerit nisl. Donec ac leo molestie, posuere ligula id, elementum lacus. Praesent eu faucibus mauris, non efficitur justo. Donec aliquet sapien sit amet nisl lobortis, at lobortis est aliquam.</p>
+      <p>Aliquam bibendum id lorem eget porttitor. Ut ultrices lorem at nisi aliquet, in porta nulla dapibus. Donec posuere non elit eu interdum. Vestibulum condimentum velit lorem, a luctus diam rutrum eu. Suspendisse potenti. Vestibulum et eros ultrices, convallis dolor id, ultrices felis. Duis in libero ullamcorper, rutrum lorem eu, tempus sapien. Etiam non ultricies diam, non sagittis sapien. Nam finibus ultricies nisl vel consequat. Donec nulla mi, blandit ac venenatis vitae, dictum vitae diam. Pellentesque tincidunt vitae neque eu tincidunt. Aenean non orci ut diam sagittis elementum a ut quam. Nulla a suscipit felis. Nam et metus mollis, sodales ante a, molestie magna. Proin faucibus ex eget vehicula hendrerit.</p>
+      <p>Donec tellus elit, condimentum ut mauris sed, luctus fermentum lorem. Cras vitae eleifend dui. Aenean ultricies nibh at tortor sollicitudin efficitur. Vivamus sed risus ornare eros porttitor euismod et varius orci. Suspendisse et est vitae justo tincidunt dignissim vitae vel massa. Maecenas quis ipsum euismod, eleifend mauris eu, porttitor justo. Nullam orci dolor, ultricies ut sagittis quis, porta at purus. Ut orci lacus, condimentum quis porttitor ut, efficitur in turpis. Pellentesque quis pellentesque leo.</p>
+    </div>
+    
 		<script type="text/javascript">
 
 		tinymce.init({
 			mode: "exact",
 			elements: "tinymce",
 			theme: "modern",
-			plugins: 'ice,icesearchreplace',
-			theme_advanced_buttons1: "source,|,bold,italic,underline,|,bullist,numlist,|,undo,redo,code,|,search,replace,|,ice_togglechanges,ice_toggleshowchanges,iceacceptall,icerejectall,iceaccept,icereject",
+			plugins: 'ice,icesearchreplace,code',
+			theme_advanced_buttons1: "bold,italic,underline,|,bullist,numlist,|,undo,redo,code,|,search,replace,|,ice_togglechanges,ice_toggleshowchanges,iceacceptall,icerejectall,iceaccept,icereject",
 			theme_advanced_buttons2: "",
 			theme_advanced_buttons3: "",
 			theme_advanced_buttons4: "",
@@ -83,6 +84,9 @@
 			tinymce.execCommand('ice_changeuser', {id: id, name: name});
 		}
 		
+    function setLoremContent() {
+      tinymce.editors[0].setContent($('#loremcontent').html());
+    }
 		</script>
 
 	</div>
