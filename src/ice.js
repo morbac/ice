@@ -293,6 +293,10 @@
         var needsToBubble = this.paste(e);
         if (!needsToBubble) e.preventDefault();
         return needsToBubble;
+      } else if (e.type == 'cut') {
+        var needsToBubble = this.cut(e);
+        if (!needsToBubble) e.preventDefault();
+        return needsToBubble;
       }
     },
 
@@ -1651,6 +1655,15 @@
       }
       // force the paste event on insert div since tinymce will not re-send a paste command
       jQuery(icpp._insertDiv).trigger('paste');
+      return true;
+    },
+
+    cut: function (e) {
+      var icpp = this.pluginsManager.plugins['IceCopyPastePlugin'];
+      if (!icpp.handleCut(e)) {
+        ice.dom.preventDefault(e);
+        return false;
+      }
       return true;
     },
 

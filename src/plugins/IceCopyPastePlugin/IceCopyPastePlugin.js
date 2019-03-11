@@ -299,8 +299,9 @@ IceCopyPastePlugin.prototype = {
         self._ice.env.selection.addRange(range);
       }, 100);
     }, 0);
-    
+
     self._ice.env.selection.addRange(crange);
+    return true;
   },
 
 
