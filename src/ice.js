@@ -71,7 +71,11 @@
 
     // Switch for whether paragraph breaks should be removed when the user is deleting over a
     // paragraph break while changes are tracked.
-    mergeBlocks: true
+    mergeBlocks: true,
+
+    MOUSE_LEFT: 0,
+    MOUSE_MIDDLE: 1,
+    MOUSE_RIGHT: 2
   };
 
   InlineChangeEditor = function (options) {
@@ -263,12 +267,18 @@
     handleEvent: function (e) {
       if (!this.isTracking) return;
       if (e.type == 'mouseup') {
-        var self = this;
-        setTimeout(function () {
-          self.mouseUp(e);
-        }, 200);
+        if (this._getMouseButton(e) == 0) {
+          var self = this;
+          setTimeout(function () {
+            self.mouseUp(e);
+          }, 200);
+        }
+        return true;
       } else if (e.type == 'mousedown') {
-        return this.mouseDown(e);
+        if (this._getMouseButton(e) == 0) {
+          return this.mouseDown(e);
+        }
+        return true;
       } else if (e.type == 'keypress') {
         var needsToBubble = this.keyPress(e);
         if (!needsToBubble) e.preventDefault();
@@ -285,7 +295,7 @@
     visible: function(el) {
       if(el.nodeType === ice.dom.TEXT_NODE) el = el.parentNode;
       var rect = el.getBoundingClientRect();
-      return ( rect.top > 0 && rect.left > 0);
+      return (rect.top > 0 && rect.left > 0);
     },
 
     /**
@@ -1629,6 +1639,16 @@
       return this._handleAncillaryKey(e);
     },
 
+    mouseUp: function (e, target) {
+      if (!this.pluginsManager.fireClicked(e)) return false;
+      this.pluginsManager.fireSelectionChanged(this.getCurrentRange());
+    },
+
+    mouseDown: function (e, target) {
+      if (!this.pluginsManager.fireMouseDown(e)) return false;
+      this.pluginsManager.fireCaretUpdated();
+    },
+
     _handleEnter: function () {
       var range = this.getCurrentRange();
       if (!range.collapsed) this.deleteContents();
@@ -1687,14 +1707,23 @@
       return true;
     },
 
-    mouseUp: function (e, target) {
-      if (!this.pluginsManager.fireClicked(e)) return false;
-      this.pluginsManager.fireSelectionChanged(this.getCurrentRange());
-    },
-
-    mouseDown: function (e, target) {
-      if (!this.pluginsManager.fireMouseDown(e)) return false;
-      this.pluginsManager.fireCaretUpdated();
+    _getMouseButton: function(e) {
+      if ("which" in e) {
+        // Gecko (Firefox), WebKit (Safari/Chrome) & Opera
+        switch (e.which) {
+          case 3:  return this.MOUSE_RIGHT;
+          case 2:  return this.MOUSE_MIDDLE;
+          default: return this.MOUSE_LEFT;
+        }
+      } else if ("button" in e) {
+        // IE, Opera 
+        switch (e.button) {
+          case 2:  return this.MOUSE_RIGHT;
+          case 1:  return this.MOUSE_MIDDLE;
+          default: return this.MOUSE_LEFT;
+        }
+      }
+      return this.MOUSE_LEFT;
     }
   };
 
