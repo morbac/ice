@@ -1655,7 +1655,7 @@
         return false;
       }
       // force the paste event on insert div since tinymce will not re-send a paste command
-      jQuery(icpp._insertDiv).trigger('paste');
+      jQuery(icpp._pasteElement).trigger('paste');
       return true;
     },
 

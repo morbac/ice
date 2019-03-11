@@ -5,9 +5,13 @@ var exports = this, IceCopyPastePlugin;
 IceCopyPastePlugin = function(ice_instance) {
   this._ice = ice_instance;
   this._tmpNode = null;
-  this._tmpNodeTagName = 'icepaste';
+
+  this._pasteTmpNodeTagName = 'icepaste';
   this._pasteId = 'icepastediv';
-  this._insertDiv = null;
+  this._pasteElement = null;
+  this._cutId = 'icecutdiv';
+  this._cutElement = null;
+
   var self = this;
 
   // API
@@ -45,7 +49,7 @@ IceCopyPastePlugin.prototype = {
     settings = settings || {};
     ice.dom.extend(this, settings);
 
-    this.preserve += ',' + this._tmpNodeTagName;
+    this.preserve += ',' + this._pasteTmpNodeTagName;
     this.setupPreserved();
   },
 
@@ -53,9 +57,9 @@ IceCopyPastePlugin.prototype = {
     if (e.metaKey !== true && e.ctrlKey !== true)
       return;
     if (e.keyCode == ice.dom.DOM_VK_V)
-      this.handlePaste();
+      this.handlePaste(e);
     else if (e.keyCode == ice.dom.DOM_VK_X)
-      this.handleCut();
+      this.handleCut(e);
     return true;
   },
 
@@ -64,7 +68,6 @@ IceCopyPastePlugin.prototype = {
   // Inserts a temporary placeholder for the current range and removes
   // the contents of the ice element body and calls a paste handler.
   handlePaste: function(e) {
-
     var range = this._ice.getCurrentRange();
 
     if (!range.collapsed) {
@@ -93,7 +96,7 @@ IceCopyPastePlugin.prototype = {
       this._ice.env.selection.addRange(range);
     }
 
-    this._tmpNode = this._ice.env.document.createElement(this._tmpNodeTagName);
+    this._tmpNode = this._ice.env.document.createElement(this._pasteTmpNodeTagName);
     range.insertNode(this._tmpNode);
 
     switch (this.pasteType) {
@@ -111,21 +114,21 @@ IceCopyPastePlugin.prototype = {
   // Create a temporary div and set focus to it so that the browser can paste into it.
   // Set a timeout to push a paste handler on to the end of the execution stack.
   setupPaste: function(stripTags) {
-    this._insertDiv = this.createDiv(this._pasteId);
+    this._pasteElement = this.createDiv(this._pasteId);
     var self = this,
         range = this._ice.getCurrentRange();
 
-    range.selectNodeContents(this._insertDiv);
+    range.selectNodeContents(this._pasteElement);
     this._ice.selection.addRange(range);
 
-    this._insertDiv.onpaste = function(event) {
+    this._pasteElement.onpaste = function(event) {
       setTimeout(function(){
         self.handlePasteValue(stripTags);
       },0);
        event.stopPropagation();
     };
 
-    this._insertDiv.focus();
+    this._pasteElement.focus();
     return true;
   },
 
@@ -272,28 +275,28 @@ IceCopyPastePlugin.prototype = {
   // Intercepts cut operation and handles by creating an editable div, copying the current selection
   // into it, deleting the current selection with track changes, and selecting the contents in the
   // editable div.
-  handleCut: function() {
+  handleCut: function(e) {
     var self = this,
         range = this._ice.getCurrentRange();
-    if (range.collapsed) return; // If nothing is selected, there's nothing to mark deleted
+    if (range.collapsed) return false; // If nothing is selected, there's nothing to mark deleted
 
-    this.cutElement = this.createDiv('icecut');
+    this._cutElement = this.createDiv(this._cutId);
     // Chrome strips out spaces between text nodes and elements node during cut
-    this.cutElement.innerHTML = range.getHTMLContents().replace(/ </g, '&nbsp;<').replace(/> /g, '>&nbsp;');
+    this._cutElement.innerHTML = range.getHTMLContents().replace(/ </g, '&nbsp;<').replace(/> /g, '>&nbsp;');
 
     if (this._ice.isTracking) this._ice.deleteContents();
     else range.deleteContents();
 
     var crange = this._ice.env.document.createRange();
-    crange.setStart(this.cutElement.firstChild, 0);
-    crange.setEndAfter(this.cutElement.lastChild);
+    crange.setStart(this._cutElement.firstChild, 0);
+    crange.setEndAfter(this._cutElement.lastChild);
 
     setTimeout(function() {
-      self.cutElement.focus();
+      self._cutElement.focus();
 
-      // After the browser cuts out of the `cutElement`, reset the range and remove the cut element.
+      // After the browser cuts out of the `_cutElement`, reset the range and remove the cut element.
       setTimeout(function() {
-        ice.dom.remove(self.cutElement);
+        ice.dom.remove(self._cutElement);
         range.setStart(range.startContainer, range.startOffset);
         range.collapse(false);
         self._ice.env.selection.addRange(range);
