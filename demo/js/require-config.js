@@ -1,6 +1,6 @@
 var require = {
     "paths": {
-      "jquery": "http://code.jquery.com/jquery-3.3.1.min",
+      "jquery": "http://code.jquery.com/jquery-3.3.1.js",
       'tinymce': "tinymce/js/tinymce/tinymce",
       "tinymce.jquery": "tinymce/js/tinymce/jquery.tinymce.min",
    //    "rangy": "rangy/rangy-core",
@@ -11,7 +11,7 @@ var require = {
 	  // "IceEmdashPlugin":'ice/plugins/IceEmdashPlugin/IceEmdashPlugin.js',
 	  // "IceSmartQuotesPlugin":'ice/plugins/IceSmartQuotesPlugin/IceSmartQuotesPlugin.js',
 
-  "jquery3.3": "http://code.jquery.com/jquery-3.3.1.min",
+  "jquery3.3": "http://code.jquery.com/jquery-3.3.1.js",
   "rangy-core": "../../lib/rangy/rangy-core",
   "polyfills": "../../src/polyfills",
   "ice":"../../src/ice",
