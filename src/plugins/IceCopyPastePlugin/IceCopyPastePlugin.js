@@ -7,8 +7,9 @@ IceCopyPastePlugin = function(ice_instance) {
   this._tmpNode = null;
   this._tmpNodeTagName = 'icepaste';
   this._pasteId = 'icepastediv';
+  this._insertDiv = null;
   var self = this;
-  
+
   // API
 
   // 'formatted' - paste will be MS Word cleaned.
@@ -51,9 +52,9 @@ IceCopyPastePlugin.prototype = {
   keyDown: function(e) {
     if (e.metaKey !== true && e.ctrlKey !== true)
       return;
-    if (e.keyCode == 86)
+    if (e.keyCode == ice.dom.DOM_VK_V)
       this.handlePaste();
-    else if (e.keyCode == 88)
+    else if (e.keyCode == ice.dom.DOM_VK_X)
       this.handleCut();
     return true;
   },
@@ -76,8 +77,9 @@ IceCopyPastePlugin.prototype = {
       }
     }
 
-    if (this._ice.isTracking)
+    if (this._ice.isTracking) {
       this._ice._moveRangeToValidTrackingPos(range);
+    }
 
     if (range.startContainer == this._ice.element) {
       // Fix a potentially empty body with a bad selection
@@ -102,28 +104,28 @@ IceCopyPastePlugin.prototype = {
         this.setupPaste(true);
         break;
     }
-             
+
     return true;
   },
 
   // Create a temporary div and set focus to it so that the browser can paste into it.
   // Set a timeout to push a paste handler on to the end of the execution stack.
   setupPaste: function(stripTags) {
-    var div = this.createDiv(this._pasteId),
-        self = this,
+    this._insertDiv = this.createDiv(this._pasteId);
+    var self = this,
         range = this._ice.getCurrentRange();
-    
-    range.selectNodeContents(div);
+
+    range.selectNodeContents(this._insertDiv);
     this._ice.selection.addRange(range);
 
-    div.onpaste = function(event) {
+    this._insertDiv.onpaste = function(event) {
       setTimeout(function(){
         self.handlePasteValue(stripTags);
       },0);
        event.stopPropagation();
     };
 
-    div.focus();
+    this._insertDiv.focus();
     return true;
   },
 
@@ -143,7 +145,6 @@ IceCopyPastePlugin.prototype = {
     html = this.beforePasteClean.call(this, html);
 
     if(stripTags) {
-                    
       // Strip out change tracking tags.
       html = this._ice.getCleanContent(html);
       html = this.stripPaste(html);
@@ -176,7 +177,7 @@ IceCopyPastePlugin.prototype = {
       range.collapse(true);
       this._ice.selection.addRange(range);
       var prevBlock = range.startContainer;
-      
+
       // Paste all of the children in the fragment.
       while(fragment.firstChild) {
         if(fragment.firstChild.nodeType === 3 && !jQuery.trim(fragment.firstChild.nodeValue)) {
@@ -245,7 +246,6 @@ IceCopyPastePlugin.prototype = {
     pasteDiv.parentNode.removeChild(pasteDiv);
     this._cleanup(lastEl);
   },
-
 
   createDiv: function(id) {
     var doc = this._ice.env.document, // Document object of window or tinyMCE iframe

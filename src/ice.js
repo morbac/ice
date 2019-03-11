@@ -289,6 +289,10 @@
         return needsToBubble;
       } else if (e.type == 'keyup') {
         this.pluginsManager.fireCaretUpdated();
+      } else if (e.type == 'paste') {
+        var needsToBubble = this.paste(e);
+        if (!needsToBubble) e.preventDefault();
+        return needsToBubble;
       }
     },
 
@@ -1637,6 +1641,17 @@
       }
 
       return this._handleAncillaryKey(e);
+    },
+
+    paste: function (e) {
+      var icpp = this.pluginsManager.plugins['IceCopyPastePlugin'];
+      if (!icpp.handlePaste(e)) {
+        ice.dom.preventDefault(e);
+        return false;
+      }
+      // force the paste event on insert div since tinymce will not re-send a paste command
+      jQuery(icpp._insertDiv).trigger('paste');
+      return true;
     },
 
     mouseUp: function (e, target) {
