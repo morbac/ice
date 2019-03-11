@@ -19,6 +19,9 @@
     // All permitted block element tagnames
     blockEls: ['p', 'ol', 'ul', 'li', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'blockquote'],
 
+    // Node names for all elements that may wrap other nodes in `this.element`
+    blockParentsNodeName: ['html', 'body', 'table', 'thead', 'tbody', 'tfoot'],
+
     // Unique style prefix, prepended to a digit, incremented for each encountered user, and stored
     // in ice node class attributes - cts1, cts2, cts3, ...
     stylePrefix: 'cts',
@@ -625,7 +628,8 @@
     acceptRejectChange: function (node, isAccept) {
       var delSel, insSel, selector, removeSel, replaceSel, trackNode, changes, dom = ice.dom;
       var nodeParent = node.parentElement;
-      var nodeParentChildElementCount = node.parentElement.childElementCount;
+      var parentElements = [];
+      var self = this;
 
       if (!node) {
         var range = this.getCurrentRange();
@@ -640,20 +644,36 @@
       // Some changes are done in batches so there may be other tracking
       // nodes with the same `changeIdAttribute` batch number.
       changes = dom.find(this.element, '[' + this.changeIdAttribute + '=' + dom.attr(trackNode, this.changeIdAttribute) + ']');
+      $.each(changes, function(idx, change) {
+        var parent = change.parentElement;
+        while(parent && self.blockParentsNodeName.indexOf(parent.nodeName.toLowerCase()) === -1) {
+          parentElements[parentElements.length] = parent;
+          parent = parent.parentElement;
+        }
+      });
 
       if (!isAccept) {
         removeSel = insSel;
         replaceSel = delSel;
       }
 
-      if (dom.is(trackNode, removeSel) && nodeParentChildElementCount === 1) {
-        dom.remove(nodeParent);
-      } else if (ice.dom.is(trackNode, replaceSel)) {
+      if (ice.dom.is(trackNode, replaceSel)) {
         dom.each(changes, function (i, node) {
           dom.replaceWith(node, ice.dom.contents(node));
         });
       } else if (dom.is(trackNode, removeSel)) {
         dom.remove(changes);
+
+        if (isAccept) {
+          $.each(parentElements, function(idx, elem) {
+            $(elem).children('br[data-mce-bogus]').remove();
+            if (dom.hasNoTextOrStubContent(elem)) {
+              dom.remove(elem);
+            } else {
+              return false;
+            }
+          });
+        }
       }
     },
 
