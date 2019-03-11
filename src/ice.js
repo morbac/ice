@@ -1502,6 +1502,7 @@
           this.pluginsManager.fireKeyPressed(e);
           break;
         case ice.dom.DOM_VK_DELETE:
+          if (shiftKey) document.execCommand('copy');
           preventDefault = this.deleteContents(true);
           this.pluginsManager.fireKeyPressed(e);
           break;
