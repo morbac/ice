@@ -10,6 +10,9 @@
     userNameAttribute: 'data-username',
     timeAttribute: 'data-time',
 
+    // date format for changes popup title attribute
+    titleDateFormat: 'm/d/Y h:ia',
+
     // Prepended to `changeType.alias` for classname uniqueness, if needed
     attrValuePrefix: '',
 
@@ -1480,8 +1483,7 @@
           preventDefault = this.deleteContents();
           this.pluginsManager.fireKeyPressed(e);
           break;
-        case 46:
-          // Key 46 is the DELETE key.
+        case ice.dom.DOM_VK_DELETE_KEY:
           preventDefault = this.deleteContents(true);
           this.pluginsManager.fireKeyPressed(e);
           break;
@@ -1527,7 +1529,7 @@
         /** END: Handling of caret movements inside hidden .ins/.del elements ***************/
         /************************************************************************************/
 
-        case 32:
+        case ice.dom.DOM_VK_SPACE:
           preventDefault = true;
           var range = this.getCurrentRange();
           this._moveRangeToValidTrackingPos(range, range.startContainer);

@@ -3,7 +3,9 @@
       _browser = null,
     dom = {};
 
+  dom.DOM_VK_SPACE = 32;
   dom.DOM_VK_DELETE = 8;
+  dom.DOM_VK_DELETE_KEY = 46;
   dom.DOM_VK_LEFT = 37;
   dom.DOM_VK_UP = 38;
   dom.DOM_VK_RIGHT = 39;
