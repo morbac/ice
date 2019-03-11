@@ -1479,11 +1479,11 @@
       var self = this;
       var range = self.getCurrentRange();
       switch (key) {
-        case ice.dom.DOM_VK_DELETE:
+        case ice.dom.DOM_VK_BACK_SPACE:
           preventDefault = this.deleteContents();
           this.pluginsManager.fireKeyPressed(e);
           break;
-        case ice.dom.DOM_VK_DELETE_KEY:
+        case ice.dom.DOM_VK_DELETE:
           preventDefault = this.deleteContents(true);
           this.pluginsManager.fireKeyPressed(e);
           break;
@@ -1570,8 +1570,7 @@
         }
       }
       switch (e.keyCode) {
-        case 27:
-          // ESC
+        case ice.dom.DOM_VK_ESCAPE:
           break;
         default:
           preventDefault = !(this._handleAncillaryKey(e));
@@ -1613,12 +1612,12 @@
       if (c !== null && e.ctrlKey !== true && e.metaKey !== true) {
         var key = e.keyCode ? e.keyCode : e.which;
         switch (key) {
-          case ice.dom.DOM_VK_DELETE:
+          case ice.dom.DOM_VK_BACK_SPACE:
             // Handle delete key for Firefox.
             return this._handleAncillaryKey(e);
-          case ice.dom.DOM_VK_ENTER:
+          case ice.dom.DOM_VK_RETURN:
             return this._handleEnter();
-          case 32:
+          case ice.dom.DOM_VK_SPACE:
             return this._handleAncillaryKey(e);
           default:
             // If we are in a deletion, move the range to the end/outside.
@@ -1645,7 +1644,7 @@
 
       var preventDefault = false;
       switch (keyCode) {
-        case 65:
+        case ice.dom.DOM_VK_A:
           // Check for CTRL/CMD + A (select all).
           if (e.ctrlKey === true || e.metaKey === true) {
             preventDefault = true;

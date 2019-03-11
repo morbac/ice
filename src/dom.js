@@ -1,16 +1,20 @@
 (function () {
   var exports = this,
       _browser = null,
-    dom = {};
+      dom = {};
 
+  dom.DOM_VK_BACK_SPACE = 8;
+  dom.DOM_VK_TAB = 9;
+  dom.DOM_VK_RETURN = 13;
+  dom.DOM_VK_ESCAPE = 27;
   dom.DOM_VK_SPACE = 32;
-  dom.DOM_VK_DELETE = 8;
-  dom.DOM_VK_DELETE_KEY = 46;
   dom.DOM_VK_LEFT = 37;
   dom.DOM_VK_UP = 38;
   dom.DOM_VK_RIGHT = 39;
   dom.DOM_VK_DOWN = 40;
-  dom.DOM_VK_ENTER = 13;
+  dom.DOM_VK_DELETE = 46;
+  dom.DOM_VK_A = 65;
+
   dom.ELEMENT_NODE = 1;
   dom.ATTRIBUTE_NODE = 2;
   dom.TEXT_NODE = 3;

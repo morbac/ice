@@ -166,7 +166,7 @@ IcePluginManager.prototype = {
     }
 
     switch (e.keyCode) {
-      case 13:
+      case ice.dom.DOM_VK_RETURN:
         eKeys.push('enter');
       break;
 
@@ -186,11 +186,11 @@ IcePluginManager.prototype = {
         eKeys.push('down');
       break;
 
-      case 9:
+      case ice.dom.DOM_VK_TAB:
         eKeys.push('tab');
       break;
 
-      case ice.dom.DOM_VK_DELETE:
+      case ice.dom.DOM_VK_BACK_SPACE:
         eKeys.push('delete');
       break;
 
