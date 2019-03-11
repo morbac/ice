@@ -1502,7 +1502,7 @@
           this.pluginsManager.fireKeyPressed(e);
           break;
         case ice.dom.DOM_VK_DELETE:
-          if (shiftKey) document.execCommand('copy');
+          if (shiftKey) this._sendToClipboard(range);
           preventDefault = this.deleteContents(true);
           this.pluginsManager.fireKeyPressed(e);
           break;
@@ -1753,6 +1753,14 @@
         }
       }
       return this.MOUSE_LEFT;
+    },
+
+    _sendToClipboard: function (range) {
+      if (navigator.clipboard) {
+        navigator.clipboard.writeText(range.toString());
+      } else {
+        document.execCommand('copy');
+      }
     }
   };
 
