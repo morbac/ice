@@ -14,6 +14,11 @@
   dom.DOM_VK_DOWN = 40;
   dom.DOM_VK_DELETE = 46;
   dom.DOM_VK_A = 65;
+  dom.DOM_VK_V = 86;
+  dom.DOM_VK_X = 88;
+  dom.DOM_VK_HYPHEN_MINUS = 173;
+  dom.DOM_VK_DASH = 189;
+  dom.DOM_VK_PERIOD = 190;
 
   dom.ELEMENT_NODE = 1;
   dom.ATTRIBUTE_NODE = 2;

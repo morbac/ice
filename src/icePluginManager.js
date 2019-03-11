@@ -112,7 +112,6 @@ IcePluginManager.prototype = {
    */
   getPlugin: function(name) {
     return this.plugins[name];
-
   },
 
   /**

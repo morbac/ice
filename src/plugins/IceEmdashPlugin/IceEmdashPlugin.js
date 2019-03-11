@@ -16,10 +16,11 @@ IceEmdashPlugin.prototype = {
 		// Catch dashes.
 		if (ice.dom.isBrowser('mozilla')) {
       var version = parseInt(ice.dom.browser().version);
-      if ((version > 14 && e.keyCode === 173) || (version <= 14 && e.keyCode === 109)) {
+      if ((version > 14 && e.keyCode === ice.dom.DOM_VK_HYPHEN_MINUS) ||
+          (version <= 14 && e.keyCode === ice.dom.DOM_VK_PERIOD)) {
         return this.convertEmdash(e);
       }
-		} else if (e.keyCode === 189) {
+		} else if (e.keyCode === ice.dom.DOM_VK_DASH) {
 			return this.convertEmdash(e);
 		}
 		return true;
