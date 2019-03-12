@@ -42,12 +42,12 @@
     changeTypes: {
       insertType: {
         tag: 'span',
-        alias: 'ins',
+        alias: 'ice-ins',
         action: 'Inserted'
       },
       deleteType: {
         tag: 'span',
-        alias: 'del',
+        alias: 'ice-del',
         action: 'Deleted'
       }
     },
