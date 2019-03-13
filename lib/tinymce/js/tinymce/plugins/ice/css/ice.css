@@ -1,27 +1,8 @@
-.CT-hide .ice-del, .CT-hide .ice-del {
-  display: none;
-}
+/* styles used while tracking is off */
+.CT-hide .ice-del, .CT-hide .ice-del { display: none; }
+.CT-hide .ice-ins, .CT-hide .ice-ins { color: #333333; background: none !important; border: none !important; text-decoration: none !important; font-weight: normal !important; }
 
-.CT-hide .ice-ins, .CT-hide .ice-ins {
-  color: #333333;
-  background: none !important;
-  border: none !important;
-  text-decoration: none !important;
-  font-weight: normal !important;
-}
-
-.ice-ins, .ice-del {
-  font-weight:bold;
-}
-
-.ice-ins {
-  text-decoration: underline;
-  color:blue;
-  background-color: #efefff;
-}
-
-.ice-del {
-  text-decoration: line-through;
-  color:red;
-  background-color: #ffefef;
-}
+/* styles used while tracking is on */
+.ice-ins, .ice-del { font-weight:bold; }
+.ice-ins { text-decoration: underline;    color:blue; background-color: #efefff; }
+.ice-del { text-decoration: line-through; color:red;  background-color: #ffefef; }
