@@ -26,8 +26,9 @@
     blockParentsNodeName: ['html', 'body', 'table', 'thead', 'tbody', 'tfoot'],
 
     // Unique style prefix, prepended to a digit, incremented for each encountered user, and stored
-    // in ice node class attributes - cts1, cts2, cts3, ...
+    // in ice node class attributes - cts-1, cts-2, cts-3, ...
     stylePrefix: 'cts',
+
     currentUser: {
       id: null,
       name: null
@@ -95,7 +96,7 @@
 
   InlineChangeEditor.prototype = {
     // Tracks all of the styles for users according to the following model:
-    //  [userId] => styleId; where style is "this.stylePrefix" + "this.uniqueStyleIndex"
+    //  [userId] => styleId; where style is "this.stylePrefix" + "-" + "this.uniqueStyleIndex"
     _userStyles: {},
     _styles: {},
 
@@ -107,9 +108,6 @@
 
     // One change may create multiple ice nodes, so this keeps track of the current batch id.
     _batchChangeid: null,
-
-    // Incremented for each new change, dropped in the changeIdAttribute.
-    _uniqueIDIndex: 1,
 
     // Temporary bookmark tags for deletes, when delete placeholding is active.
     _delBookmark: 'tempdel',
@@ -904,7 +902,7 @@
     },
 
     getNewChangeId: function () {
-      var id = ++this._uniqueIDIndex;
+      var id = uuidv1();
       if (this._changes[id]) {
         // Dupe.. create another..
         id = this.getNewChangeId();
