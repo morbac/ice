@@ -33,6 +33,16 @@ h1, h3 {
 	width: 100%;
 	min-height: 700px;
 }
+#source {
+  font-family: consolas;
+  line-height: 1em;
+  font-size: 11pt;
+  background: white;
+  border: solid 1px #BFBFBF;
+}
+.tagname > b { color: #AA00AA;}
+.tagname.red, .tagname.red > b { color: red; }
+.tagname.blue, .tagname.blue > b { color: blue; }
 a.mceButton16 img.mceIcon { width: 16px; height: 16px; padding: 2px;}
 
 .CT-hide .del, .CT-hide .del {

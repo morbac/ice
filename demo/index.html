@@ -43,51 +43,84 @@
   </div>
   
 	<div class="container">
-		<textarea id="source"></textarea>
+		<div id="source"></div>
   </div>
 
   <script type="text/javascript">
-
-  tinymce.init({
-    mode: "exact",
-    elements: "tinymce",
-    theme: "modern",
-    plugins: 'ice,icesearchreplace,code',
-    toolbar: 'code | undo redo | bold italic underline | ice_togglechanges ice_toggleshowchanges iceacceptall icerejectall iceaccept icereject',
-    extended_valid_elements: "p,span[*],delete[*],insert[*]",
-    init_instance_callback: function (editor) {
-      editor.on('change', function (e) {
-        $('#source').text(editor.getContent());
-      });
-    },
-    ice: {
-      user: { name: 'Geoffrey Jellineck', id: 11},
-      preserveOnPaste: 'p,a[href],i,em,b,span',
-      deleteTag: 'delete',
-      insertTag: 'insert',
-      runMode: 'demo'
+    tinymce.init({
+      mode: "exact",
+      elements: "tinymce",
+      theme: "modern",
+      plugins: 'ice,icesearchreplace,code',
+      toolbar: 'code | undo redo | bold italic underline | ice_togglechanges ice_toggleshowchanges iceacceptall icerejectall iceaccept icereject',
+      extended_valid_elements: "p,span[*],delete[*],insert[*]",
+      init_instance_callback: function (editor) {
+        editor.on('keyup',   function (e) { updateSourceView(editor); });
+        editor.on('mouseup', function (e) { updateSourceView(editor); });
+        editor.on('paste',   function (e) { updateSourceView(editor); });
+      },
+      ice: {
+        user: { name: 'Geoffrey Jellineck', id: 11},
+        preserveOnPaste: 'p,a[href],i,em,b,span',
+        deleteTag: 'delete',
+        insertTag: 'insert',
+        runMode: 'demo'
+      }
+    });
+    
+    function setUserMCE(el) {
+      var name = $(el).find(':selected').data('username');
+      var id = $(el).find(':selected').data('userid');
+      tinymce.execCommand('ice_changeuser', {id: id, name: name});
     }
-  });
-  
-  function setUserMCE(el) {
-    var name = $(el).find(':selected').data('username');
-    var id = $(el).find(':selected').data('userid');
-    tinymce.execCommand('ice_changeuser', {id: id, name: name});
-  }
-  
-  function setLoremContent() {
-    var editor = tinymce.editors[0];
-    editor.setContent($('#loremcontent').html());
-    $('#source').text(editor.getContent());
-  }
+    
+    function setLoremContent() {
+      tinymce.activeEditor.setContent($('#loremcontent').html());
+      updateSourceView(tinymce.activeEditor);
+    }
+
+    function updateSourceView (editor) {
+      var parser = new DOMParser();
+      var doc = parser.parseFromString(editor.getContent(), "text/html");
+      var msg = processNode(doc.body);
+      
+      $('#source').html(msg);
+    }
+    
+    function processNode(node) {
+      if (node instanceof CharacterData) {
+        return node.nodeValue.replace(/\n/g, '<br/><br/>');
+      } else if (node instanceof Element) {
+        var cc = '';
+        if (node.attributes['class']) {
+          var c = ' '+node.attributes['class'].textContent+' ';
+          if (c.indexOf(' ice-ins ') >= 0) {
+            cc = 'blue';
+          } else if (c.indexOf(' ice-del ') >= 0) {
+            cc = 'red';
+          }
+        }
+        var msg = "<span class='tagname "+cc+"'>&lt;<b>" + node.tagName.toLowerCase() + "</b>";
+
+        $.each(node.attributes, function(idx,a) {
+          msg += " "+a.name+"=\""+a.textContent+"\"";
+        });
+        
+        msg += "&gt;";
+
+        $.each(node.childNodes, function(idx,n) {
+          msg += processNode(n);
+        });
+        
+        msg += "&lt;<b>/" + node.tagName.toLowerCase() + "</b>&gt;</span>";
+        return msg;
+      }
+    }
   </script>
 
   <div id="loremcontent">
     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam a turpis risus. Etiam tincidunt consequat dui, ac varius quam porttitor vitae. Cras finibus orci id ante iaculis, at volutpat ipsum tempus. Fusce lobortis sem a dui facilisis, malesuada sagittis justo eleifend. Sed hendrerit, ex nec vulputate sagittis, elit sem maximus dui, sit amet scelerisque libero dolor nec nulla. Curabitur nec dapibus nibh. Maecenas ac ante sed ex cursus finibus ac at lacus. Nam at orci volutpat, cursus mi sit amet, dapibus nisi. Morbi pellentesque, urna ac molestie convallis, sapien nulla laoreet nibh, quis viverra arcu nulla finibus velit. Vivamus metus erat, faucibus ac lobortis sed, vulputate a sem.</p>
     <p>Mauris justo magna, auctor id diam ut, mollis dictum massa. Aenean est lorem, dignissim vitae varius eu, elementum eu sapien. Nam volutpat nibh justo, tincidunt tristique nisl faucibus in. Sed vel nibh non massa blandit dictum. In tincidunt dapibus augue, eget volutpat odio ullamcorper ac. Maecenas ultricies ligula id iaculis vulputate. Aliquam pretium eget massa sit amet congue. Phasellus consequat sapien diam, vel dictum urna cursus sed. Donec a dui id urna varius pretium. Etiam nec tincidunt mi. Praesent blandit lectus et tortor facilisis, at porta mi convallis. Morbi quis luctus neque. Maecenas accumsan, arcu ut volutpat imperdiet, justo nulla placerat mi, nec scelerisque mauris purus et libero.</p>
-    <p>Proin urna ipsum, varius id dictum ac, laoreet non odio. Pellentesque in ipsum ac sem imperdiet rutrum. Donec cursus mauris sit amet dolor blandit, sit amet tincidunt quam iaculis. Maecenas vitae dui ac ligula aliquet finibus. Fusce fringilla mi quis nisl aliquam, id laoreet nunc rhoncus. Pellentesque placerat elit vitae cursus sagittis. Nulla mattis tortor eu dignissim porttitor. Nunc hendrerit dolor pellentesque massa dictum, sed facilisis dui tincidunt. Vivamus in magna sit amet velit ultrices scelerisque eu et nisi. Aliquam laoreet augue ac arcu dapibus mollis. Pellentesque nec eros congue, aliquet enim id, hendrerit nisl. Donec ac leo molestie, posuere ligula id, elementum lacus. Praesent eu faucibus mauris, non efficitur justo. Donec aliquet sapien sit amet nisl lobortis, at lobortis est aliquam.</p>
-    <p>Aliquam bibendum id lorem eget porttitor. Ut ultrices lorem at nisi aliquet, in porta nulla dapibus. Donec posuere non elit eu interdum. Vestibulum condimentum velit lorem, a luctus diam rutrum eu. Suspendisse potenti. Vestibulum et eros ultrices, convallis dolor id, ultrices felis. Duis in libero ullamcorper, rutrum lorem eu, tempus sapien. Etiam non ultricies diam, non sagittis sapien. Nam finibus ultricies nisl vel consequat. Donec nulla mi, blandit ac venenatis vitae, dictum vitae diam. Pellentesque tincidunt vitae neque eu tincidunt. Aenean non orci ut diam sagittis elementum a ut quam. Nulla a suscipit felis. Nam et metus mollis, sodales ante a, molestie magna. Proin faucibus ex eget vehicula hendrerit.</p>
-    <p>Donec tellus elit, condimentum ut mauris sed, luctus fermentum lorem. Cras vitae eleifend dui. Aenean ultricies nibh at tortor sollicitudin efficitur. Vivamus sed risus ornare eros porttitor euismod et varius orci. Suspendisse et est vitae justo tincidunt dignissim vitae vel massa. Maecenas quis ipsum euismod, eleifend mauris eu, porttitor justo. Nullam orci dolor, ultricies ut sagittis quis, porta at purus. Ut orci lacus, condimentum quis porttitor ut, efficitur in turpis. Pellentesque quis pellentesque leo.</p>
   </div>
 </body>
 </html>
