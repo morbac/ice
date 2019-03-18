@@ -428,7 +428,7 @@
           this._deleteSelection(range);
         } else {
           this._deleteSelection(range);
-          if(browser["type"] === "mozilla"){
+          /*if(browser["type"] === "mozilla"){
             if(range.startContainer.parentNode.previousSibling){
               range.setEnd(range.startContainer.parentNode.previousSibling, 0);
               range.moveEnd(ice.dom.CHARACTER_UNIT, ice.dom.getNodeCharacterLength(range.endContainer));
@@ -436,12 +436,12 @@
               range.setEndAfter(range.startContainer.parentNode);
             }
             range.collapse(false);
-          } else {
+          } else {*/
             if(!this.visible(range.endContainer)){
               range.setEnd(range.endContainer, range.endOffset - 1);
               range.collapse(false);
             }
-          }
+          /*}*/
         }
       } else {
         if (right) {
@@ -463,9 +463,9 @@
             // Calibrate Cursor before deleting
             if(range.endOffset === ice.dom.getNodeCharacterLength(range.endContainer)){
               var next = range.startContainer.nextSibling;
-              if (ice.dom.is(next,  '.' + this._getIceNodeClass('deleteType'))) {
+              if (ice.dom.is(next, '.' + this._getIceNodeClass('deleteType'))) {
                 while(next){
-                  if (ice.dom.is(next,  '.' + this._getIceNodeClass('deleteType'))) {
+                  if (ice.dom.is(next, '.' + this._getIceNodeClass('deleteType'))) {
                     next = next.nextSibling;
                     continue;
                   }
@@ -481,7 +481,7 @@
 
             // Calibrate Cursor after deleting
             if(!this.visible(range.endContainer)){
-              if (ice.dom.is(range.endContainer.parentNode,  '.' + this._getIceNodeClass('insertType') + ', .' + this._getIceNodeClass('deleteType'))) {
+              if (ice.dom.is(range.endContainer.parentNode, '.' + this._getIceNodeClass('insertType') + ', .' + this._getIceNodeClass('deleteType'))) {
                 //range.setStart(range.endContainer.parentNode.nextSibling, 0);
                 range.setStartAfter(range.endContainer.parentNode);
                 range.collapse(true);

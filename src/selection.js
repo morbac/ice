@@ -21,7 +21,7 @@
 		  this._selection.refresh();
 	  }
       else if (this.env.frame) {
-		  this._selection = rangy.getIframeSelection(this.env.frame);
+		  this._selection = rangy.getSelection(this.env.frame);
 	  }
       else {
 		  this._selection = rangy.getSelection();
@@ -59,7 +59,6 @@
       this._selection || (this._selection = this._getSelection());
       this._selection.setSingleRange(range);
       this._selection.ranges = [range];
-      return;
     },
 
     /**
