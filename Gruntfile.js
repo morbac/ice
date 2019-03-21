@@ -84,12 +84,12 @@ module.exports = function(grunt) {
       },
       tinyice: {
         files: {
-          'dist/tinymce/plugins/ice/plugin.min.js': ['lib/tinymce/js/tinymce/plugins/ice/plugin.js']
+          'dist/tinymce/plugins/ice/plugin.min.js': ['lib/tinymce/plugins/ice/plugin.js']
         }
       },
       tinysr: {
         files: {
-          'dist/tinymce/plugins/icesearchreplace/plugin.min.js': ['lib/tinymce/js/tinymce/plugins/icesearchreplace/plugin.js']
+          'dist/tinymce/plugins/icesearchreplace/plugin.min.js': ['lib/tinymce/plugins/icesearchreplace/plugin.js']
         }
       }
     },
@@ -134,7 +134,7 @@ module.exports = function(grunt) {
   });
 
   var cpTinyDir = function(dir) {
-    grunt.file.recurse('lib/tinymce/js/tinymce/plugins/' + dir + '/', function(abspath, rootdir, subdir, filename) {
+    grunt.file.recurse('lib/tinymce/plugins/' + dir + '/', function(abspath, rootdir, subdir, filename) {
       grunt.file.copy(rootdir + '/' + (subdir ? subdir + '/' : '') + filename,
                       'dist/tinymce/plugins/' + dir + '/' + (subdir ? subdir + '/' : '') + '/' + filename);
     });

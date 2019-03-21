@@ -5,6 +5,9 @@
   <meta charset="UTF-8"/>
   <link rel="stylesheet" href="demo.css" type="text/css" media="screen" />
   <script src="http://code.jquery.com/jquery-3.3.1.js"></script>
+  <script type="text/javascript" src="http://cloud.tinymce.com/4/tinymce.js"></script>
+  <script type="text/javascript" src='../lib/tinymce/plugins/ice/plugin.js'></script>
+  <script type="text/javascript" src='../lib/tinymce/plugins/icesearchreplace/plugin.js'></script>
   <script type="text/javascript" src='../lib/rangy/rangy-core.js'></script>
   <script type="text/javascript" src='../lib/uuid/uuid.js'></script>
   <script type="text/javascript" src='../src/polyfills.js'></script>
@@ -18,7 +21,6 @@
   <script type="text/javascript" src='../src/plugins/IceCopyPastePlugin/IceCopyPastePlugin.js'></script>
   <script type="text/javascript" src='../src/plugins/IceEmdashPlugin/IceEmdashPlugin.js'></script>
   <script type="text/javascript" src='../src/plugins/IceSmartQuotesPlugin/IceSmartQuotesPlugin.js'></script>
-  <script type="text/javascript" src="../lib/tinymce/js/tinymce/tinymce.js"></script>
 </head>
 
 <body>
@@ -53,7 +55,7 @@
       theme: "modern",
       plugins: 'ice,icesearchreplace,contextmenu,code',
       contextmenu: 'iceaccept icereject',
-      //menubar: false,
+      menubar: false,
       toolbar: 'code | undo redo | bold italic underline | ice_togglechanges ice_toggleshowchanges iceacceptall icerejectall iceaccept icereject',
       extended_valid_elements: "p,span[*],delete[*],insert[*]",
       init_instance_callback: function (editor) {
@@ -66,7 +68,8 @@
         preserveOnPaste: 'p,a[href],i,em,b,span',
         deleteTag: 'delete',
         insertTag: 'insert',
-        runMode: 'demo'
+        runMode: 'demo',
+        pluginPath: '../lib/tinymce/plugins/ice'    // indicates to ice where it is located; this is required because tinymce is loaded from cloud, but plugin is local
       }
     });
 
