@@ -3,11 +3,11 @@
      x="0px" y="0px" width="200px" height="200px" viewBox="0 0 200 200"
      xml:space="preserve">
 <g id="letter">
-  <polygon points="80,30 30,150 60,150 70,125 120,125 130,150 160,150 110,30"/>
+  <polygon points="80,30 30,150 60,150 70,125 120,125 130,150 160,150 110,30" style="fill:#595959"/>
   <polygon points="95,60 80,100 110,100" style="fill:white"/>
 </g>
 <g id="line">
-  <polygon points="20,80 20,110 170,110 170,80" style="stroke:white;stroke-width:10;"/>
+  <polygon points="20,80 20,110 170,110 170,80" style="fill:#595959;stroke:white;stroke-width:10;"/>
 </g>
 <!--<line x1="0" y1="200" x2="200" y2="200" style="stroke:blue;stroke-width:2"/>
 <line x1="200" y1="200" x2="200" y2="0" style="stroke:blue;stroke-width:2"/>-->

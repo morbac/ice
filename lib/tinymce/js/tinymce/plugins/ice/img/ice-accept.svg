@@ -3,11 +3,11 @@
      x="0px" y="0px" width="200px" height="200px" viewBox="0 0 200 200"
      xml:space="preserve">
 <g id="page" transform="translate(15 0)">
-  <polygon points="60,30 20,70 20,170 140,170 140,30" style="fill:white;stroke:black;stroke-width:15"/>
-  <polygon points="60,30 60,70 20,70 20,85 75,85 75,30"/>
+  <polygon points="60,30 20,70 20,170 140,170 140,30" style="fill:white;stroke:#595959;stroke-width:15"/>
+  <polygon points="60,30 60,70 20,70 20,85 75,85 75,30" style="fill:#595959"/>
 </g>
 <g id="check" transform="translate(42.5 45)">
-  <polygon points="130,50 80,100 60,80 40,100 80,140 150,70" style="stroke:white;stroke-width:10"/>
+  <polygon points="130,50 80,100 60,80 40,100 80,140 150,70" style="fill:#595959;stroke:white;stroke-width:10"/>
 </g>
 <!--<line x1="0" y1="200" x2="200" y2="200" style="stroke:blue;stroke-width:2"/>
 <line x1="200" y1="200" x2="200" y2="0" style="stroke:blue;stroke-width:2"/>-->
