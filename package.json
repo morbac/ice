@@ -1,11 +1,11 @@
 {
   "name": "ice",
-  "description": "Track changes in JavaScript.",
+  "description": "Track changes in JavaScript. Based on NYTimes/ICE project <https://github.com/nytimes/ice>",
   "version": "0.6.2",
-  "author": "Matthew DeLambo <delambo@gmail.com>",
+  "author": "Nicolas Crittin <morbac@gmail.com>",
   "repository": {
     "type": "git",
-    "url": "git://github.com/nytimes/ice"
+    "url": "https://github.com/morbac/ice"
   },
   "devDependencies": {
     "grunt-contrib": "~0.4.0",
@@ -19,12 +19,12 @@
     "grunt-contrib-connect": "~0.2.0"
   },
   "bugs": {
-    "url": "http://github.com/nytimes/ice/issues"
+    "url": "https://github.com/morbac/ice/issues"
   },
   "licenses": [
     {
       "type": "MIT",
-      "url": "https://github.com/nytimes/ice/blob/master/LICENSE"
+      "url": "https://github.com/morbac/ice/blob/master/LICENSE"
     }
   ]
 }

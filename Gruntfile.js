@@ -39,14 +39,6 @@ module.exports = function(grunt) {
     },
 
     concat: {
-      options: {
-        stripBanners: true,
-        banner: '//\n' +
-          '// <%= pkg.name %> - v<%= pkg.version %>\n' +
-          '// The MIT License\n' +
-          '// Copyright (c) 2012 The New York Times, CMS Group, Matthew DeLambo <delambo@gmail.com> \n' +
-          '//\n'
-      },
       dist: {
         src: ['lib/rangy/rangy-core.js', 'lib/uuid/uuid.js', 'src/polyfills.js', 'src/ice.js', 'src/dom.js', 'src/bookmark.js', 'src/selection.js', 'src/icePlugin.js', 'src/icePluginManager.js', 'src/plugins/IceAddTitlePlugin/IceAddTitlePlugin.js', 'src/plugins/IceCopyPastePlugin/IceCopyPastePlugin.js', 'src/plugins/IceSmartQuotesPlugin/IceSmartQuotesPlugin.js', 'src/plugins/IceEmdashPlugin/IceEmdashPlugin.js'],
         dest: 'dist/ice.js'
@@ -56,14 +48,9 @@ module.exports = function(grunt) {
     uglify: {
       options: {
         beautify : {
-            ascii_only : true
-          } ,
-        preserveComments: false,
-        banner: '//\n' +
-          '// <%= pkg.name %> - v<%= pkg.version %>\n' +
-          '// The MIT License\n' +
-          '// Copyright (c) 2012 The New York Times, CMS Group, Matthew DeLambo <delambo@gmail.com> \n' +
-          '//\n'
+          ascii_only : true
+        },
+        preserveComments: false
       },
       ice: {
         files: {
@@ -71,13 +58,7 @@ module.exports = function(grunt) {
         }
       },
       icemaster: {
-        options: {
-          banner: '//\n' +
-            '// <%= pkg.name %> - Master\n' +
-            '// The MIT License\n' +
-            '// Copyright (c) 2012 The New York Times, CMS Group, Matthew DeLambo <delambo@gmail.com>\n' +
-            '//\n'
-        },
+        options: { },
         files: {
           'ice-master.min.js': ['dist/ice.js']
         }
