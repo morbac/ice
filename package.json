@@ -1,7 +1,7 @@
 {
   "name": "ice",
   "description": "Track changes in JavaScript. Based on NYTimes/ICE project <https://github.com/nytimes/ice>",
-  "version": "0.6.3",
+  "version": "0.6.4",
   "author": "Nicolas Crittin <morbac@gmail.com>",
   "repository": {
     "type": "git",
