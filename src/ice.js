@@ -199,7 +199,6 @@
       }
 
     },
- 
     /*
      * Updates the list of changes to include all track tags found inside the element.
      */
@@ -528,6 +527,7 @@
 
       this.selection.addRange(range);
       this.endBatchChange(changeid);
+      this.element.dispatchEvent(new Event('ice:deleteContents'));
       return prevent;
     },
 
@@ -1606,7 +1606,6 @@
         this._preventKeyPress = false;
         return;
       }
-      
       if (!this.pluginsManager.fireKeyPress(e)) return false;
 
       var c = null;
