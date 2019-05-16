@@ -205,6 +205,10 @@ IceCopyPastePlugin.prototype = {
               newEl.innerHTML = fragment.firstChild.innerHTML;
             }
             lastEl = insert;
+            // Copy attributes preserved through the stripPaste process
+            ice.dom.each(fragment.firstChild.attributes, function() {
+                newEl.setAttribute(this.name, this.value);
+            });
             ice.dom.insertBefore(prevBlock, newEl);
           }
           fragment.removeChild(fragment.firstChild);
@@ -328,7 +332,7 @@ IceCopyPastePlugin.prototype = {
     var self = this;
     this._tags = '';
     this._attributesMap = [];
-    
+
     ice.dom.each(this.preserve.split(','), function(i, tagAttr) {
       // Extract the tag and attributes list
       tagAttr.match(/(\w+)(\[(.+)\])?/);
@@ -398,7 +402,7 @@ IceCopyPastePlugin.prototype = {
 
     // Remove class, lang and style attributes.
     content = content.replace(/<(\w[^>]*) (lang)=([^ |>]*)([^>]*)/gi, "<$1$4");
-  
+
     return content;
   },
 
@@ -425,7 +429,7 @@ IceCopyPastePlugin.prototype = {
       range.setStartAfter(moveTo);
       range.collapse(true);
       this._ice.selection.addRange(range);
-      
+
       // Kill the tmp node.
       this._tmpNode.parentNode.removeChild(this._tmpNode);
       this._tmpNode = null;
