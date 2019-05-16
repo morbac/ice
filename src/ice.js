@@ -527,7 +527,11 @@
 
       this.selection.addRange(range);
       this.endBatchChange(changeid);
-      this.element.dispatchEvent(new Event('ice:deleteContents'));
+
+      var deleteContentsEvent = document.createEvent('Event');
+      deleteContentsEvent.initEvent('ice:deleteContents', true, true);
+      this.element.dispatchEvent(deleteContentsEvent);
+
       return prevent;
     },
 
