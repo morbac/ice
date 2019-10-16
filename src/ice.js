@@ -1613,7 +1613,9 @@
       if (!this.pluginsManager.fireKeyPress(e)) return false;
 
       var c = null;
-      if (e.which == null) {
+      if (e.char != undefined) {
+        c = e.char;
+      } else if (e.which == null) {
         // IE.
         c = String.fromCharCode(e.keyCode);
       } else if (e.which > 0) {
@@ -1629,7 +1631,9 @@
       }
 
       // Ice will ignore the keyPress event if CMD or CTRL key is also pressed
-      if (c !== null && e.ctrlKey !== true && e.metaKey !== true) {
+      // Ice with not ignore the keyPress event if CTRL + ALT (= ALT_GR) is
+      // pressed (for instance when inserting @, # or € char on IE)
+      if (c !== null && e.ctrlKey == e.altKey && e.metaKey !== true) {
         var key = e.keyCode ? e.keyCode : e.which;
         switch (key) {
           case ice.dom.DOM_VK_BACK_SPACE:
@@ -1642,7 +1646,8 @@
           default:
             // If we are in a deletion, move the range to the end/outside.
             this._moveRangeToValidTrackingPos(range, range.startContainer);
-            return this.insert(e.key);
+            return this.insert(c);  // previously: e.key (changed to fix insertion of "Del"
+                                    //             when pressing . key on num pad on IE
         }
       }
 
