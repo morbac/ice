@@ -6,7 +6,7 @@ $(document).ready(function() {
 
     // Setup for deleting left, through different user insert
     var el = jQuery('<div>' +
-        '<p>a <em>left<span class="ins cts-1" userid="1" cid="1">ist</span></em> paragraph</p>' +
+        '<p>a <em>left<span class="ins ice-cts-1" userid="1" cid="1">ist</span></em> paragraph</p>' +
       '</div>');
     var changeEditor = getIce(el);
 	$("body").append(el);
@@ -38,7 +38,7 @@ $(document).ready(function() {
 
     // Setup for deleting right, through different user insert
     el = jQuery('<div>' +
-        '<p>a <em>right<span class="ins cts-1" userid="1" cid="1">ist</span></em> paragraph</p>' +
+        '<p>a <em>right<span class="ins ice-cts-1" userid="1" cid="1">ist</span></em> paragraph</p>' +
       '</div>');
     changeEditor = getIce(el);
 	$("body").append(el);
@@ -74,7 +74,7 @@ $(document).ready(function() {
 
     // Setup for deleting left, through different user delete and insert
     el = jQuery('<div>' +
-        '<p>a <em>l<span class="ins cts-1" userid="1" cid="1">ef</span><span class="del cts-1" userid="1" cid="1">ti</span>st</em> paragraph</p>' +
+        '<p>a <em>l<span class="ins ice-cts-1" userid="1" cid="1">ef</span><span class="del ice-cts-1" userid="1" cid="1">ti</span>st</em> paragraph</p>' +
       '</div>');
     changeEditor = getIce(el);
 	$("body").append(el);
@@ -100,7 +100,7 @@ $(document).ready(function() {
 
     // Setup for deleting right, through different user delete and insert
     el = jQuery('<div>' +
-        '<p>a <em>r<span class="ins cts-1" userid="1" cid="1">ig</span><span class="del cts-1" userid="1" cid="1">hte</span>st</em> paragraph</p>' +
+        '<p>a <em>r<span class="ins ice-cts-1" userid="1" cid="1">ig</span><span class="del ice-cts-1" userid="1" cid="1">hte</span>st</em> paragraph</p>' +
       '</div>');
     changeEditor = getIce(el);
 	$("body").append(el);
@@ -125,7 +125,7 @@ $(document).ready(function() {
 
     // Setup for deleting left, through same user insert
     el = jQuery('<div>' +
-        '<p>a <em><span class="ins cts-1" userid="4" cid="1">left</span>ist</em> paragraph</p>' +
+        '<p>a <em><span class="ins ice-cts-1" userid="4" cid="1">left</span>ist</em> paragraph</p>' +
       '</div>');
     changeEditor = getIce(el);
 	$("body").append(el);
@@ -162,7 +162,7 @@ $(document).ready(function() {
     
     // Setup for deleting right, through same user insert
     el = jQuery('<div>' +
-        '<p>a <em><span class="ins cts-1" userid="4" cid="1">right</span>ist</em> paragraph</p>' +
+        '<p>a <em><span class="ins ice-cts-1" userid="4" cid="1">right</span>ist</em> paragraph</p>' +
       '</div>');
     changeEditor = getIce(el);
 	$("body").append(el);
@@ -199,7 +199,7 @@ $(document).ready(function() {
 
     // Setup for deleting left, through different user delete
     el = jQuery('<div>' +
-        '<p>a<em> <span class="del cts-1" userid="1" cid="1">left</span>ist</em> paragraph</p>' +
+        '<p>a<em> <span class="del ice-cts-1" userid="1" cid="1">left</span>ist</em> paragraph</p>' +
       '</div>');
     changeEditor = getIce(el);
 	$("body").append(el);
@@ -238,7 +238,7 @@ $(document).ready(function() {
 
     // Setup for deleting right, through different user delete
     el = jQuery('<div>' +
-        '<p>a <em><span class="del cts-1" userid="1" cid="1">right</span>ist</em> paragraph</p>' +
+        '<p>a <em><span class="del ice-cts-1" userid="1" cid="1">right</span>ist</em> paragraph</p>' +
       '</div>');
     changeEditor = getIce(el);
 	$("body").append(el);
@@ -271,7 +271,7 @@ $(document).ready(function() {
 	// Setup for deleting right, and then checking the cursor position afterwards
 	// The cursor must be outside of (after) the .del region
     el = jQuery('<div>' +
-        '<p>a <em><span class="del cts-1" userid="1" cid="1">right</span>ist</em> paragraph</p>' +
+        '<p>a <em><span class="del ice-cts-1" userid="1" cid="1">right</span>ist</em> paragraph</p>' +
       '</div>');
     changeEditor = getIce(el);
 
@@ -291,7 +291,7 @@ $(document).ready(function() {
 
       // Setup for deleting left, through same user delete
     el = jQuery('<div>' +
-        '<p>a<em> <span class="del cts-1" userid="4" cid="1">left</span>ist</em> paragraph</p>' +
+        '<p>a<em> <span class="del ice-cts-1" userid="4" cid="1">left</span>ist</em> paragraph</p>' +
       '</div>');
     changeEditor = getIce(el);
 	$("body").append(el);
@@ -327,7 +327,7 @@ $(document).ready(function() {
     
     // Setup for deleting right, through same user delete
     el = jQuery('<div>' +
-        '<p>a <em><span class="del cts-1" userid="4" cid="1">right</span>ist</em> paragraph</p>' +
+        '<p>a <em><span class="del ice-cts-1" userid="4" cid="1">right</span>ist</em> paragraph</p>' +
       '</div>');
     changeEditor = getIce(el);
 	$("body").append(el);
@@ -447,7 +447,7 @@ $(document).ready(function() {
 
     // Setup for deleting left through adjacent, different-user deletes
     el = jQuery('<div>' +
-        '<p>test <span class="del cts-1" cid="1" userid="1">delete1</span><span class="del cts-1" cid="2" userid="1">delete2</span> test</p>' +
+        '<p>test <span class="del ice-cts-1" cid="1" userid="1">delete1</span><span class="del ice-cts-1" cid="2" userid="1">delete2</span> test</p>' +
       '</div>');
     changeEditor = getIce(el);
 	$("body").append(el);
@@ -467,7 +467,7 @@ $(document).ready(function() {
 
     // Setup for deleting right through adjacent, different-user deletes
     el = jQuery('<div>' +
-        '<p>test <span class="del cts-1" cid="1" userid="1">delete1</span><span class="del cts-1" cid="2" userid="1">delete2</span> test</p>' +
+        '<p>test <span class="del ice-cts-1" cid="1" userid="1">delete1</span><span class="del ice-cts-1" cid="2" userid="1">delete2</span> test</p>' +
       '</div>');
     changeEditor = getIce(el);
 	$("body").append(el);
@@ -487,7 +487,7 @@ $(document).ready(function() {
 
     // Setup for deleting left through adjacent, same-user deletes
     el = jQuery('<div>' +
-        '<p>test <span class="del cts-1" cid="1" userid="4">delete1</span><span class="del cts-1" cid="2" userid="4">delete2</span> test</p>' +
+        '<p>test <span class="del ice-cts-1" cid="1" userid="4">delete1</span><span class="del ice-cts-1" cid="2" userid="4">delete2</span> test</p>' +
       '</div>');
     changeEditor = getIce(el);
 	$("body").append(el);
@@ -509,7 +509,7 @@ $(document).ready(function() {
 
     // Setup for deleting right through adjacent, same-user deletes
     el = jQuery('<div>' +
-        '<p>test <span class="del cts-1" cid="1" userid="4">delete1</span><span class="del cts-1" cid="2" userid="4">delete2</span> test</p>' +
+        '<p>test <span class="del ice-cts-1" cid="1" userid="4">delete1</span><span class="del ice-cts-1" cid="2" userid="4">delete2</span> test</p>' +
       '</div>');
     changeEditor = getIce(el);
 	$("body").append(el);
@@ -829,7 +829,7 @@ $(document).ready(function() {
     
     // Setup for deleting left through image inside different user insert.
     el = jQuery('<div>' +
-    '<p>The <span class="ins cts-1" userid="1" cid="1"><img></span> te<em>x</em>t</p>' +
+    '<p>The <span class="ins ice-cts-1" userid="1" cid="1"><img></span> te<em>x</em>t</p>' +
             '</div>');
     changeEditor = getIce(el);
 	$("body").append(el);
@@ -853,7 +853,7 @@ $(document).ready(function() {
 
     // Setup for deleting right through image inside different user insert.
     el = jQuery('<div>' +
-    '<p>T<em>h</em>e <span class="ins cts-1" userid="1" cid="1"><img></span> text</p>' +
+    '<p>T<em>h</em>e <span class="ins ice-cts-1" userid="1" cid="1"><img></span> text</p>' +
             '</div>');
     changeEditor = getIce(el);
 	$("body").append(el);
@@ -949,7 +949,7 @@ $(document).ready(function() {
   
     // Setup for deleting selection that ends in a delete tag
     el = jQuery('<div>' +
-        '<p>test <span class="del cts-1" userid="1" cid="1">delete</span> test</p>' +
+        '<p>test <span class="del ice-cts-1" userid="1" cid="1">delete</span> test</p>' +
       '</div>');
     changeEditor = getIce(el);
 	$("body").append(el);
@@ -967,7 +967,7 @@ $(document).ready(function() {
 
     // Setup for deleting selection that begins in a delete tag
     el = jQuery('<div>' +
-        '<p>test <span class="del cts-1" userid="1" cid="1"><b>del</b>ete</span> test</p>' +
+        '<p>test <span class="del ice-cts-1" userid="1" cid="1"><b>del</b>ete</span> test</p>' +
       '</div>');
     changeEditor = getIce(el);
 	$("body").append(el);
@@ -986,7 +986,7 @@ $(document).ready(function() {
 
     // Setup for deleting selection with nested inner nodes
     el = jQuery('<div>' +
-        '<p>test <span class="del cts-1" userid="1" cid="1"><b>del</b>ete</span><span class="ins cts-2" userid="1" cid="2"> small</span> test</p>' +
+        '<p>test <span class="del ice-cts-1" userid="1" cid="1"><b>del</b>ete</span><span class="ins ice-cts-2" userid="1" cid="2"> small</span> test</p>' +
       '</div>');
     changeEditor = getIce(el);
 	$("body").append(el);
@@ -1005,12 +1005,12 @@ $(document).ready(function() {
       'Deleted a selection with nested inner nodes.');
 
 
-    // <div><p>|text</p><p>text <span class="del cts-1" userid="4" cid="1">same user delete</span> text</p><p>text|</p></div>
+    // <div><p>|text</p><p>text <span class="del ice-cts-1" userid="4" cid="1">same user delete</span> text</p><p>text|</p></div>
     //         |                                                                                                  |
     //         A                                                                                                  B
     // Delete the selection from A to B and expect that all inner paragraph
     // nodes are deleted and the existing user delete is merged with new delete nodes.
-    el = jQuery('<div><p>text</p><p>text <span class="del cts-1" userid="4" cid="1">same user delete</span> text</p><p>text</p></div>');
+    el = jQuery('<div><p>text</p><p>text <span class="del ice-cts-1" userid="4" cid="1">same user delete</span> text</p><p>text</p></div>');
     changeEditor = getIce(el);
 	$("body").append(el);
 

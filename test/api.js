@@ -14,7 +14,7 @@ $(document).ready(function() {
       'Range was initialized to contain the paragraph.');
     
     // Setup for multi-user/paragraph initialization.
-    var el = jQuery('<div><p>test <span class="ins cts-1" time="987654321" userid="2" username="Hank" cid="1">content</span> in paragraph one.</p><p>test <span class="del cts-2" time="987654321" userid="3" username="Bob" cid="2">content</span> in paragraph two.</p></div>');
+    var el = jQuery('<div><p>test <span class="ins ice-cts-1" time="987654321" userid="2" username="Hank" cid="1">content</span> in paragraph one.</p><p>test <span class="del ice-cts-2" time="987654321" userid="3" username="Bob" cid="2">content</span> in paragraph two.</p></div>');
     var changeEditor = getIce(el);
     var range = changeEditor.env.selection.createRange();
 
@@ -25,14 +25,14 @@ $(document).ready(function() {
     ok(changeEditor.pluginsManager.plugins, 'Plugins are loaded.');
     ok(changeEditor.currentUser.id === "4" && changeEditor.currentUser.name === "Ted", 'Current user is loaded.');
     var us = changeEditor._userStyles;
-    ok(us['2'] === 'cts-1' && us['3'] === 'cts-2', 'User styles are properly assigned.');
+    ok(us['2'] === 'ice-cts-1' && us['3'] === 'ice-cts-2', 'User styles are properly assigned.');
 
   });
 
   test("InlineChangeEditor.placeholdDeletes", function() {
     var el = jQuery('<div>\
-      <p>test <span class="del cts-1" cid="1">content</span> in paragraph one.</p>\
-      <p>test <em><span class="del cts-2" cid="2">content <span class="ins" cid="3">in</span></span> paragraph</em> two.</p>\
+      <p>test <span class="del ice-cts-1" cid="1">content</span> in paragraph one.</p>\
+      <p>test <em><span class="del ice-cts-2" cid="2">content <span class="ins" cid="3">in</span></span> paragraph</em> two.</p>\
     </div>');
     var changeEditor = getIce(el);
     changeEditor.placeholdDeletes();
@@ -44,7 +44,7 @@ $(document).ready(function() {
   });
 
   test("InlineChangeEditor.revertDeletePlaceholders", function() {
-    var html = '<p>test <span class="del cts-1" cid="1">content</span> in paragraph one.</p><p>test <em><span class="del cts-2" cid="2">content <span class="ins" cid="3">in</span></span> paragraph</em> two.</p>';
+    var html = '<p>test <span class="del ice-cts-1" cid="1">content</span> in paragraph one.</p><p>test <em><span class="del ice-cts-2" cid="2">content <span class="ins" cid="3">in</span></span> paragraph</em> two.</p>';
     var el = jQuery('<div>' + html + '</div>');
     var changeEditor = getIce(el);
     changeEditor.placeholdDeletes();
@@ -56,8 +56,8 @@ $(document).ready(function() {
   test("InlineChangeEditor.getCleanContent", function() {
     // Make sure track changes tags are cleaned properly.
     var el = jQuery('<div>\
-      <p>test <span class="ins cts-1" cid="1">content</span> in paragraph one.</p>\
-      <p>test <em><span class="del cts-2" cid="2">content <span class="ins" cid="3">in</span></span> paragraph</em> two.</p>\
+      <p>test <span class="ins ice-cts-1" cid="1">content</span> in paragraph one.</p>\
+      <p>test <em><span class="del ice-cts-2" cid="2">content <span class="ins" cid="3">in</span></span> paragraph</em> two.</p>\
     </div>');
     var changeEditor = getIce(el);
     var content = changeEditor.getCleanContent();

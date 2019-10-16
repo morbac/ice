@@ -26,8 +26,8 @@
     blockParentsNodeName: ['html', 'body', 'table', 'thead', 'tbody', 'tfoot'],
 
     // Unique style prefix, prepended to a digit, incremented for each encountered user, and stored
-    // in ice node class attributes - cts-1, cts-2, cts-3, ...
-    stylePrefix: 'cts',
+    // in ice node class attributes - ice-cts-1, ice-cts-2, ice-cts-3, ...
+    stylePrefix: 'ice-cts',
 
     currentUser: {
       id: null,

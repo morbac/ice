@@ -40,7 +40,7 @@ $(document).ready(function() {
 
     // Setup for nested inserts.
     el = jQuery('<div>' +
-        '<p>test<span class="ins cts-1" userid="2" cid="1"> in 1 <span class="ins cts-2" userid="3" cid="2">in 2 </span></span><span class="ins cts-3" userid="4" cid="3">in 3</span> done.</p>' +
+        '<p>test<span class="ins ice-cts-1" userid="2" cid="1"> in 1 <span class="ins ice-cts-2" userid="3" cid="2">in 2 </span></span><span class="ins ice-cts-3" userid="4" cid="3">in 3</span> done.</p>' +
       '</div>');
     changeEditor = getIce(el);
 	$("body").append(el);
@@ -72,7 +72,7 @@ $(document).ready(function() {
     
     // Setup for inserting in deletes.
     el = jQuery('<div>' +
-        '<p>test <span class="del cts-1" userid="1" cid="1">delete 1</span><span class="del cts-2" userid="2" cid="2"> delete 2<span class="del cts-3" userid="3" cid="3"> delete 3</span> delete 2.</span> The end.</p>' +
+        '<p>test <span class="del ice-cts-1" userid="1" cid="1">delete 1</span><span class="del ice-cts-2" userid="2" cid="2"> delete 2<span class="del ice-cts-3" userid="3" cid="3"> delete 3</span> delete 2.</span> The end.</p>' +
       '</div>');
     changeEditor = getIce(el);
 	$("body").append(el);
@@ -106,7 +106,7 @@ $(document).ready(function() {
 
     // Setup for inserting into a block containing one delete.
     el = jQuery('<div>' +
-        '<p><span class="del cts-1" userid="1" cid="1">delete</span></p><p> text</p>' +
+        '<p><span class="del ice-cts-1" userid="1" cid="1">delete</span></p><p> text</p>' +
       '</div>');
     changeEditor = getIce(el);
 	$("body").append(el);
@@ -122,7 +122,7 @@ $(document).ready(function() {
 
     // Setup for inserting into a block containing one delete and no other blocks.
     el = jQuery('<div>' +
-        '<p><span class="del cts-1" userid="1" cid="1">del</span><span class="del cts-2" userid="1" cid="2">ete</span></p>' +
+        '<p><span class="del ice-cts-1" userid="1" cid="1">del</span><span class="del ice-cts-2" userid="1" cid="2">ete</span></p>' +
       '</div>');
     changeEditor = getIce(el);
 	$("body").append(el);
@@ -139,7 +139,7 @@ $(document).ready(function() {
 
 	// Setup for inserting a space into a .del region.
 	el = jQuery('<div>' +
-			'<p>The placid sliver of <span class="del cts-3" data-cid="4" data-userid="11">Long</span> Island that F. Scott Fitzgerald immortalized in "The Great Gatsby" as West Egg and East Egg seems almost to have shrugged off the recession.</p>' +
+			'<p>The placid sliver of <span class="del ice-cts-3" data-cid="4" data-userid="11">Long</span> Island that F. Scott Fitzgerald immortalized in "The Great Gatsby" as West Egg and East Egg seems almost to have shrugged off the recession.</p>' +
 			'</div>');
 	changeEditor = getIce(el);
 	$("body").append(el);
@@ -155,7 +155,7 @@ $(document).ready(function() {
 	
 	// Setup for inserting a space into a .del region, with track changes hidden.
 	el = jQuery('<div>' +
-			'<p>The placid sliver of <span class="del cts-3" data-cid="4" data-userid="11">Long</span> Island that F. Scott Fitzgerald immortalized in "The Great Gatsby" as West Egg and East Egg seems almost to have shrugged off the recession.</p>' +
+			'<p>The placid sliver of <span class="del ice-cts-3" data-cid="4" data-userid="11">Long</span> Island that F. Scott Fitzgerald immortalized in "The Great Gatsby" as West Egg and East Egg seems almost to have shrugged off the recession.</p>' +
 			'</div>');
 	changeEditor = getIce(el);
 	$("body").append(el);
