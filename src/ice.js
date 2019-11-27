@@ -76,7 +76,9 @@
 
     MOUSE_LEFT: 0,
     MOUSE_MIDDLE: 1,
-    MOUSE_RIGHT: 2
+    MOUSE_RIGHT: 2,
+
+    spaceChar: '\u00A0'
   };
 
   InlineChangeEditor = function (options) {
@@ -1554,7 +1556,7 @@
           preventDefault = true;
           var range = this.getCurrentRange();
           this._moveRangeToValidTrackingPos(range, range.startContainer);
-          this.insert('\u00A0' , range);
+          this.insert(this.spaceChar, range);
           break;
         default:
           // Ignore key.
