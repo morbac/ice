@@ -8,8 +8,13 @@ IceAddTitlePlugin = function(ice_instance) {
 
 IceAddTitlePlugin.prototype = {
   nodeCreated: function(node, option) {
-    node.setAttribute('title', (option.action || 'Modified') + ' by ' + node.getAttribute(this._ice.userNameAttribute)
-        + ' - ' + ice.dom.date(this._ice.titleDateFormat, parseInt(node.getAttribute(this._ice.timeAttribute))));
+    var title = (option.action || 'Modified') + ' by ' + node.getAttribute(this._ice.userNameAttribute) + ' - ';
+    if (typeof this._ice.titleDateFormat == "function") {
+      title += this._ice.titleDateFormat(parseInt(node.getAttribute(this._ice.timeAttribute)));
+    } else {
+      title += ice.dom.date(this._ice.titleDateFormat, parseInt(node.getAttribute(this._ice.timeAttribute)));
+    }
+    node.setAttribute('title', title);
   }
 };
 
